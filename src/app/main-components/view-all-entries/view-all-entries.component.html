@@ -1,0 +1,30 @@
+<app-application-navbar></app-application-navbar>
+<div class="p-grid table-container">
+    <div class="p-col">
+      <p-table [value]="timeClockingDetailsList" [rows]="rows" styleClass="p-datatable-gridlines" [paginator]="true" [first]="first">
+        <ng-template pTemplate="header">
+          <tr>
+            <th >USER NAME</th>
+            <th>DATE WORKED</th>
+            <th>DAY WORKED</th>
+            <th>CHECK IN</th>
+            <th>CHECK OUT</th>
+            <th>LOCATION</th>
+            <th>HOURS WORKED</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tcd>
+          <tr>
+            <td>{{tcd.userName}}</td>
+            <td>{{tcd.dateWorked}}</td>
+            <td>{{tcd.dayWorked}}</td>
+            <td>{{tcd.checkIn}}</td>
+            <td>{{tcd.checkOut}}</td>
+            <td>{{tcd.location}}</td>
+            <td>{{tcd.totalHoursWorked}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  

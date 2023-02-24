@@ -1,0 +1,17 @@
+h2 {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.form-control {
+    border-radius: 0;
+    border-color: #ccc;
+    box-shadow: none;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #5cb85c;
+}

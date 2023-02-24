@@ -1,0 +1,54 @@
+<app-application-navbar></app-application-navbar>
+<div class="container-fluid"  [hidden]="!hideTable">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mt-5">
+          <div id="banner" class="card-header text-center text-white">
+            <h3>View Specific Entry</h3>
+          </div>
+          <div class="card-body">
+            <form #myForm="ngForm">
+              <div class="form-group">
+                <label for="date">Start Date <span class="required-field">*</span></label>
+                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="timeClockingDetails.startDate" required>
+              </div>
+              <div class="form-group">
+                <label for="date">End Date<span class="required-field">*</span></label>
+                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="timeClockingDetails.endDate" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block"  (click)="onSubmit()">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+
+    <div class="p-grid table-container" [hidden]="hideTable">
+      <div class="p-col">
+        <p-table [value]="timeClockingDetailsList" [rows]="rows" styleClass="p-datatable-gridlines" [paginator]="true" [first]="first">
+          <ng-template pTemplate="header">
+            <tr>
+              <th >USER NAME</th>
+              <th>DATE WORKED</th>
+              <th>DAY WORKED</th>
+              <th>CHECK IN</th>
+              <th>CHECK OUT</th>
+              <th>LOCATION</th>
+              <th>HOURS WORKED</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-tcd>
+            <tr>
+              <td>{{tcd.userName}}</td>
+              <td>{{tcd.dateWorked}}</td>
+              <td>{{tcd.dayWorked}}</td>
+              <td>{{tcd.checkIn}}</td>
+              <td>{{tcd.checkOut}}</td>
+              <td>{{tcd.location}}</td>
+              <td>{{tcd.totalHoursWorked}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
