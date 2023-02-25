@@ -23,6 +23,19 @@
     border-color: #238636;
     border-radius:10px;
   }
+  .btn.btn-report {
+    background-color:#90EE90;
+    border-color: #90EE90;
+    border-radius:10px;
+    text-align: center;
+    margin-top:10px;
+  }
+  .btn.btn-report:hover {
+    background-color: #238636;
+    border-color: #238636;
+    border-radius:10px;
+    margin-top:10px;
+  }
   #banner
   {
     background-color:#238636;
