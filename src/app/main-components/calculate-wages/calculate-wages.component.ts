@@ -59,6 +59,9 @@ export class CalculateWagesComponent {
     this.calcWagesService.generateReport(this.timeClockingDetails).subscribe(
       (data:any)=>
       {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const fileUrl = URL.createObjectURL(blob);
+        window.open(fileUrl);
         Swal.fire({
           icon: 'success',
           title: 'Success!',

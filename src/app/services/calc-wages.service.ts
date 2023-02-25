@@ -21,6 +21,6 @@ export class CalcWagesService {
   
   generateReport(timeClcokingDetails:any):Observable<any>
   {
-    return this.http.post(this.reportUrl,timeClcokingDetails);
+    return this.http.post(this.reportUrl,timeClcokingDetails, { responseType: 'blob' });
   }
 }
