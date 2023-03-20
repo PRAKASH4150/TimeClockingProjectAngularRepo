@@ -30,7 +30,8 @@
 
 <div class="p-grid table-container" [hidden]="hideTable">
   <div class="p-col">
-    <p-table [value]="timeClockingDetailsList" [rows]="rows" styleClass="p-datatable-gridlines" [paginator]="true" [first]="first">
+    <p-table [value]="timeClockingDetailsList" [rows]="rows" styleClass="p-datatable-gridlines" [paginator]="true" [first]="first"
+    [responsive]="true" [scrollable]="true" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
           <th >USER NAME</th>

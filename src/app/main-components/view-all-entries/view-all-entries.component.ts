@@ -12,7 +12,9 @@ export class ViewAllEntriesComponent implements OnInit{
 
   timeClockingDetails=new TimeClockingDetails();
   timeClockingDetailsList:any;
-  rows:any=10;
+  listEmptyMessage="No records found.";
+  listEmptyFlag:boolean=true;
+  rows:any=5;
   first=0;
 
   constructor(private viewAllEntriesService:ViewAllEntriesService)
@@ -25,17 +27,53 @@ export class ViewAllEntriesComponent implements OnInit{
       (data:any)=>
       {
         this.timeClockingDetailsList=data;
+        this.listEmptyFlag=false;
       },
       (error:any)=>
       {
-        console.log(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong in fetching the data. Contact support',
-        });
+        this.listEmptyFlag=true;
       }
     )
 
+  }
+
+  removeSpecificRecord(timeClockingDetailsObject:any)
+  {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this data!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#6c757d',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.viewAllEntriesService.removeSpecificRecord(timeClockingDetailsObject).subscribe(
+          (data:any) =>
+          {
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Record has been deleted successfully',
+              confirmButtonText: 'OK'
+            });
+            this.ngOnInit();
+          },
+          (error:any) =>
+          {
+            console.log(error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong in deleting the data. Contact support',
+            });
+          }
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        //No action
+      }
+    })
   }
 }

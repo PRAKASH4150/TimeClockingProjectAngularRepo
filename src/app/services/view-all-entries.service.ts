@@ -9,12 +9,18 @@ import { environment } from 'src/environments/environment';
 export class ViewAllEntriesService {
 
   baseUrl:any=environment.timeClockApiUrl+"/getbyusername";
+  baseUrl2:any=environment.timeClockApiUrl+"/deletebyid";
   constructor(private http:HttpClient)
   {
     
   }
-  getRecordsByUserName(timeClcokingUserDetails:any):Observable<any>
+  getRecordsByUserName(timeClockingUserDetails:any):Observable<any>
   {
-    return this.http.post(this.baseUrl,timeClcokingUserDetails);
+    return this.http.post(this.baseUrl,timeClockingUserDetails);
+  }
+
+  removeSpecificRecord(timeClockingUserDetails:any):Observable<any>
+  {
+    return this.http.post(this.baseUrl2,timeClockingUserDetails);
   }
 }

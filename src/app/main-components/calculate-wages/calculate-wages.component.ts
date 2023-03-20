@@ -13,7 +13,7 @@ export class CalculateWagesComponent {
   timeClockingDetails=new TimeClockingDetails();
   hideTable:boolean=true;
   timeClockingDetailsList:any;
-  rows:any=7;
+  rows:any=5;
   first=0;
 
 

@@ -1,5 +1,6 @@
 export class TimeClockingDetails
 {
+    serialNo:any;
     userName:any;
     dayWorked:any;
     dateWorked:any;
