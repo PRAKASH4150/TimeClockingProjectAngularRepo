@@ -1,3 +1,10 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+  [fullScreen]="true">
+</ngx-spinner>
 <app-application-navbar></app-application-navbar>
 <div class="container-fluid" [hidden]="!hideTable">
     <div class="row justify-content-center">
@@ -60,6 +67,7 @@
       </ng-template>
     </p-table>
     
-  <button type="submit" class="btn btn-report"  (click)="generateReport()">Generate Report</button>
+  <button type="submit" class="btn btn-report"  (click)="generateReport()" style="margin-right:5px;">Generate Report</button>
+  <button type="submit" class="btn btn-report"  (click)="emailReport()">Email Report</button>
   </div>
 </div>

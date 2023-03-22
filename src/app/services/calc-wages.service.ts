@@ -10,6 +10,7 @@ export class CalcWagesService {
   
   baseUrl:any=environment.timeClockApiUrl+"/getWages";
   reportUrl:any=environment.timeClockApiUrl+"/generatereport";
+  emailUrl:any=environment.timeClockApiUrl+"/emailreport";
   constructor(private http:HttpClient)
   {
     
@@ -22,5 +23,10 @@ export class CalcWagesService {
   generateReport(timeClcokingDetails:any):Observable<any>
   {
     return this.http.post(this.reportUrl,timeClcokingDetails, { responseType: 'blob' });
+  }
+
+  emailReport(timeClcokingDetails:any):Observable<any>
+  {
+    return this.http.post(this.emailUrl,timeClcokingDetails);
   }
 }

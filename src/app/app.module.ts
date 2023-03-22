@@ -20,6 +20,7 @@ import { AppLoginComponent } from './authentication/app-login/app-login.componen
 import { ViewAllEntriesComponent } from './main-components/view-all-entries/view-all-entries.component';
 import { ViewByDatesComponent } from './main-components/view-by-dates/view-by-dates.component';
 import { CalculateWagesComponent } from './main-components/calculate-wages/calculate-wages.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CalculateWagesComponent } from './main-components/calculate-wages/calcu
   ],
   imports: [
     BrowserModule,
+    NgxSpinnerModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -43,7 +45,7 @@ import { CalculateWagesComponent } from './main-components/calculate-wages/calcu
     TableModule,
     PaginatorModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -13,7 +13,7 @@ export class ViewByDatesComponent implements OnInit{
   timeClockingDetails=new TimeClockingDetails();
   hideTable:boolean=true;
   timeClockingDetailsList:any;
-  rows:any=5;
+  rows:any=3;
   first=0;
 
   constructor(private viewByDateService:ViewByDatesService)

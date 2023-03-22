@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { CalcWagesService } from 'src/app/services/calc-wages.service';
 import Swal from 'sweetalert2';
@@ -13,11 +14,11 @@ export class CalculateWagesComponent {
   timeClockingDetails=new TimeClockingDetails();
   hideTable:boolean=true;
   timeClockingDetailsList:any;
-  rows:any=5;
+  rows:any=3;
   first=0;
 
 
-  constructor(private calcWagesService:CalcWagesService)
+  constructor(private calcWagesService:CalcWagesService,private spinner: NgxSpinnerService)
   {
 
   }
@@ -71,11 +72,36 @@ export class CalculateWagesComponent {
       },
       (error:any)=>
       {
-        console.log(error.error);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: "Error in Generating the report"
+        });
+      }
+    )
+  }
+
+  emailReport()
+  {
+    this.spinner.show();
+    this.calcWagesService.emailReport(this.timeClockingDetails).subscribe(
+      (data:any)=>
+      {
+        this.spinner.hide();
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Report has been mailed successfully!!',
+          confirmButtonText: 'OK'
+        });
+      },
+      (error:any)=>
+      {
+        this.spinner.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Error in mailing the report"
         });
       }
     )

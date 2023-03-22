@@ -14,7 +14,7 @@ export class ViewAllEntriesComponent implements OnInit{
   timeClockingDetailsList:any;
   listEmptyMessage="No records found.";
   listEmptyFlag:boolean=true;
-  rows:any=5;
+  rows:any=3;
   first=0;
 
   constructor(private viewAllEntriesService:ViewAllEntriesService)
