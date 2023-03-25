@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TimeClockingUserDetails } from 'src/app/model/TimeClockingUserDetails';
 import { AuthenticationSignupService } from 'src/app/services/authentication-signup.service';
 import Swal from 'sweetalert2';
@@ -17,6 +18,20 @@ export class AppSignupComponent {
 
   }
 
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
+  userNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+
   onSubmit():void
   {
     if (!this.isFormValid()) {
@@ -24,6 +39,15 @@ export class AppSignupComponent {
         icon: 'error',
         title: 'Oops...',
         text: 'Please fill out all the required fields',
+      });
+      return;
+    }
+    else if(this.emailFormControl.errors!=null ||this.userNameFormControl.errors!=null ||this.passwordFormControl.errors!=null  )
+    {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please clear out the errors first',
       });
       return;
     }
@@ -47,6 +71,9 @@ export class AppSignupComponent {
               confirmButtonText: 'OK'
             });
             this.timeClockingUserDetails =new TimeClockingUserDetails();
+            this.emailFormControl.reset();
+            this.userNameFormControl.reset();
+            this.passwordFormControl.reset();
           }
           
         },

@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { AddEntryeService } from 'src/app/services/add-entrye.service';
 import Swal from 'sweetalert2';
@@ -17,6 +18,24 @@ export class AddTimesheetEntryComponent {
  {
 
  }
+
+ dateRequiredFormControl = new FormControl('', [
+  Validators.required,
+]);
+
+checkInTimeFormControl = new FormControl('', [
+  Validators.required,
+]);
+
+checkOutTimeFormControl = new FormControl('', [
+  Validators.required,
+]);
+
+locationFormControl = new FormControl('', [
+  Validators.required,
+]);
+
+
   onSubmit():void
   {
     if (!this.isFormValid()) {

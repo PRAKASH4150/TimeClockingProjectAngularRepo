@@ -5,4 +5,7 @@ export class TimeClockingUserDetails
     password:any;
     userExistanceFlag:any;
     authenticationFlag:any;
+    errorMsg:any;
+    otp:any;
+    confirmPassword:any;
 }

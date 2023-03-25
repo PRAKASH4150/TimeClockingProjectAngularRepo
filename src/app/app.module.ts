@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'primeng/api';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ViewAllEntriesComponent } from './main-components/view-all-entries/view
 import { ViewByDatesComponent } from './main-components/view-by-dates/view-by-dates.component';
 import { CalculateWagesComponent } from './main-components/calculate-wages/calculate-wages.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AppPasswordResetComponent } from './authentication/app-password-reset/app-password-reset.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppLoginComponent,
     ViewAllEntriesComponent,
     ViewByDatesComponent,
-    CalculateWagesComponent
+    CalculateWagesComponent,
+    AppPasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     PaginatorModule,
     BrowserAnimationsModule,
     SharedModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -12,16 +12,23 @@
 				<div class="form-group">
 					<label for="username">Username <span class="required-field">*</span></label>
 					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" 
-					[(ngModel)]="timeClockingUserDetails.userName">
+					[formControl]="userNameFormControl" [(ngModel)]="timeClockingUserDetails.userName">
+          <div *ngIf="userNameFormControl.invalid && (userNameFormControl.dirty || userNameFormControl.touched)">
+						<div class="field-error" *ngIf="userNameFormControl.hasError('required')">Username is required.</div>
+					  </div>
 				</div>
 				<div class="form-group">
 					<label for="password">Password <span class="required-field">*</span></label>
 					<input type="password" class="form-control" id="password" placeholder="Enter password" name="password"
-					[(ngModel)]="timeClockingUserDetails.password">
+					[formControl]="passwordFormControl" [(ngModel)]="timeClockingUserDetails.password">
+          <div *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)">
+						<div class="field-error" *ngIf="passwordFormControl.hasError('required')">Password is required.</div>
+					  </div>
 				</div>
 				
 				<button type="submit" class="btn btn-primary btn-block" (click)="onSubmit()">Log In</button>
             </form>
+    <p style="text-align:center;margin-top:20px;"><b>Forgot your Password?  <a  style="color:#238636;text-decoration: underline;"(click)="triggerResetPassword()">Click here.</a></b></p>
           </div>
         </div>
       </div>

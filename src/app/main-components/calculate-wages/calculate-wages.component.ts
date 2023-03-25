@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { CalcWagesService } from 'src/app/services/calc-wages.service';
@@ -22,6 +23,17 @@ export class CalculateWagesComponent {
   {
 
   }
+  startDateRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  endDateRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  wageRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
 
   onSubmit()
   {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TimeClockingUserDetails } from 'src/app/model/TimeClockingUserDetails';
 import { AuthenticationLoginService } from 'src/app/services/authentication-login.service';
@@ -18,6 +19,14 @@ export class AppLoginComponent {
 
   }
 
+  userNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
   onSubmit():void
   {
     if (!this.isFormValid()) {
@@ -25,6 +34,15 @@ export class AppLoginComponent {
         icon: 'error',
         title: 'Oops...',
         text: 'Please fill out all the required fields',
+      });
+      return;
+    }
+    else if(this.userNameFormControl.errors!=null ||this.passwordFormControl.errors!=null  )
+    {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please clear out the errors first',
       });
       return;
     }
@@ -56,6 +74,10 @@ export class AppLoginComponent {
         }
       )
     }
+  }
+  triggerResetPassword():void
+  {
+    this.router.navigate(['/reset-password']);
   }
 
   isFormValid():boolean {

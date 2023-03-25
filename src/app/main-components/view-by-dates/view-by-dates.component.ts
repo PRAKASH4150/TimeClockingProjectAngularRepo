@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { ViewByDatesService } from 'src/app/services/view-by-dates.service';
 import Swal from 'sweetalert2';
@@ -20,6 +21,14 @@ export class ViewByDatesComponent implements OnInit{
   {
 
   }
+  startDateRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  endDateRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  
   ngOnInit(): void {
     this.timeClockingDetails=new TimeClockingDetails();
     this.hideTable=true;

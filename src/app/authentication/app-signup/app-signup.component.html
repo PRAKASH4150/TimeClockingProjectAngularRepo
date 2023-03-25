@@ -12,17 +12,27 @@
 				<div class="form-group">
 					<label for="email">Email address <span class="required-field">*</span></label>
 					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" 
-					[(ngModel)]="timeClockingUserDetails.email">
+					[formControl]="emailFormControl" [(ngModel)]="timeClockingUserDetails.email">
+					<div *ngIf="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)">
+						<div class="field-error" *ngIf="emailFormControl.hasError('required')">Email is required.</div>
+						<div class="field-error" *ngIf="emailFormControl.hasError('email')">Invalid email format.</div>
+					  </div>
 				</div>
 				<div class="form-group">
 					<label for="username">Username <span class="required-field">*</span></label>
 					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" 
-					[(ngModel)]="timeClockingUserDetails.userName">
+					[formControl]="userNameFormControl" [(ngModel)]="timeClockingUserDetails.userName">
+					<div *ngIf="userNameFormControl.invalid && (userNameFormControl.dirty || userNameFormControl.touched)">
+						<div class="field-error" *ngIf="userNameFormControl.hasError('required')">Username is required.</div>
+					  </div>
 				</div>
 				<div class="form-group">
 					<label for="password">Password <span class="required-field">*</span></label>
 					<input type="password" class="form-control" id="password" placeholder="Enter password" name="password"
-					[(ngModel)]="timeClockingUserDetails.password">
+					[formControl]="passwordFormControl"[(ngModel)]="timeClockingUserDetails.password">
+					<div *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)">
+						<div class="field-error" *ngIf="passwordFormControl.hasError('required')">Password is required.</div>
+					  </div>
 				</div>
 				
 				<button type="submit" class="btn btn-primary btn-block" (click)="onSubmit()">Signup</button>
