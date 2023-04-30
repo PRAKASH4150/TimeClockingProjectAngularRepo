@@ -15,6 +15,7 @@ export class CalculateWagesComponent {
   timeClockingDetails=new TimeClockingDetails();
   hideTable:boolean=true;
   timeClockingDetailsList:any;
+  totalWageAmount:any=0;
   rows:any=3;
   first=0;
 
@@ -53,6 +54,12 @@ export class CalculateWagesComponent {
         {
           this.timeClockingDetailsList=data;
           this.hideTable=false;
+          for(let i=0;i<this.timeClockingDetailsList.length;i++)
+          {
+            let timeClockingDetails=this.timeClockingDetailsList[i];
+            this.totalWageAmount=this.totalWageAmount+timeClockingDetails.totalWageAmount;
+          }
+
         },
         (error:any)=>
         {

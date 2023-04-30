@@ -2,7 +2,7 @@
     background-image: url("https://picsum.photos/1200/800");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 900px;
     width: 100vw;
   }
   .form-group {
@@ -22,6 +22,11 @@
     background-color: #238636;
     border-color: #238636;
     border-radius:10px;
+  }
+  .btn.btn-secondary {
+    margin-top:10px;
+    width:100%;
+    text-align: center;
   }
   .btn.btn-report {
     background-color:#90EE90;

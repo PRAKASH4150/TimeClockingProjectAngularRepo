@@ -23,6 +23,7 @@ import { ViewByDatesComponent } from './main-components/view-by-dates/view-by-da
 import { CalculateWagesComponent } from './main-components/calculate-wages/calculate-wages.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppPasswordResetComponent } from './authentication/app-password-reset/app-password-reset.component';
+import { AppAuthenticationServiceComponent } from './authentication/app-authentication-service/app-authentication-service.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AppPasswordResetComponent } from './authentication/app-password-reset/a
     ViewAllEntriesComponent,
     ViewByDatesComponent,
     CalculateWagesComponent,
-    AppPasswordResetComponent
+    AppPasswordResetComponent,
+    AppAuthenticationServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { AppPasswordResetComponent } from './authentication/app-password-reset/a
     SharedModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,AppAuthenticationServiceComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

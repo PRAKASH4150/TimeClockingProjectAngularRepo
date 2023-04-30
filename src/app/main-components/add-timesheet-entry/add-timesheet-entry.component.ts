@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { Component, HostListener, NgModule, SkipSelf } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AppAuthenticationServiceComponent } from 'src/app/authentication/app-authentication-service/app-authentication-service.component';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { AddEntryeService } from 'src/app/services/add-entrye.service';
 import Swal from 'sweetalert2';
@@ -8,7 +9,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-timesheet-entry',
   templateUrl: './add-timesheet-entry.component.html',
-  styleUrls: ['./add-timesheet-entry.component.css']
+  styleUrls: ['./add-timesheet-entry.component.css'],
+  providers: [AppAuthenticationServiceComponent]
 })
 export class AddTimesheetEntryComponent {
 
@@ -89,4 +91,6 @@ locationFormControl = new FormControl('', [
     return this.timeClockingDetails.dateWorked && 
     this.timeClockingDetails.checkIn && this.timeClockingDetails.checkOut && this.timeClockingDetails.location;
   }
+
+ 
 }

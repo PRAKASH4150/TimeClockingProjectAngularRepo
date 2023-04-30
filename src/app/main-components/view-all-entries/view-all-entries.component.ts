@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TimeClockingDetails } from 'src/app/model/TimeClcokingDetails';
 import { ViewAllEntriesService } from 'src/app/services/view-all-entries.service';
 import Swal from 'sweetalert2';
@@ -14,10 +16,27 @@ export class ViewAllEntriesComponent implements OnInit{
   timeClockingDetailsList:any;
   listEmptyMessage="No records found.";
   listEmptyFlag:boolean=true;
+  updateHiddenFlag=true;
   rows:any=3;
   first=0;
 
-  constructor(private viewAllEntriesService:ViewAllEntriesService)
+  dateRequiredFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  
+  checkInTimeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  
+  checkOutTimeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  
+  locationFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  
+  constructor(private viewAllEntriesService:ViewAllEntriesService,private datePipe: DatePipe)
   {
 
   }
@@ -75,5 +94,52 @@ export class ViewAllEntriesComponent implements OnInit{
         //No action
       }
     })
+  }
+
+  updateEntry(tcd:any):void
+  {
+    this.updateHiddenFlag=false;    
+    this.timeClockingDetails=tcd;
+  }
+
+  cancelUpdate()
+  {
+    this.updateHiddenFlag=true;
+  }
+  onSubmit():void{
+    
+      const checkInDate = new Date();
+      const checkInTime = this.timeClockingDetails.checkIn.split(':');
+      checkInDate.setHours(+checkInTime[0]);
+      checkInDate.setMinutes(+checkInTime[1]);
+
+      const checkOutDate = new Date();
+      const checkOutTime = this.timeClockingDetails.checkOut.split(':');
+      checkOutDate.setHours(+checkOutTime[0]);
+      checkOutDate.setMinutes(+checkOutTime[1]);
+      this.timeClockingDetails.checkIn = this.datePipe.transform(checkInDate, 'HH:mm:ss');
+      this.timeClockingDetails.checkOut=this.datePipe.transform(checkOutDate, 'HH:mm:ss');
+
+    this.viewAllEntriesService.updateSpecificRecord(this.timeClockingDetails).subscribe(
+      (data:any) =>
+      {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Record has been updated successfully',
+          confirmButtonText: 'OK'
+        });
+        this.updateHiddenFlag=true;
+        this.ngOnInit();
+      },
+      (error:any)=>
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong in updating the data. Contact support',
+        });
+      }
+    )
   }
 }

@@ -48,6 +48,9 @@
 </div>
 
 <div class="p-grid table-container" [hidden]="hideTable">
+  <div class="alert alert-info">
+    <strong>Info! </strong>Total Wage Earned with in the specified date range: $ {{totalWageAmount}}
+  </div>
   <div class="p-col">
     <p-table [value]="timeClockingDetailsList" [rows]="rows" styleClass="p-datatable-gridlines" [paginator]="true" [first]="first"
     [responsive]="true" [scrollable]="true" responsiveLayout="scroll">
