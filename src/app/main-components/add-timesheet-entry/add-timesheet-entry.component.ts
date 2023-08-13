@@ -16,6 +16,12 @@ export class AddTimesheetEntryComponent {
 
   timeClockingDetails=new TimeClockingDetails();
 
+  options: { label: string, value: any }[] = [
+    { label: 'Paid', value: 'Paid' },
+    { label: 'Unpaid', value: 'Unpaid' },
+  ];
+
+
  constructor(private addEntryService:AddEntryeService,private datePipe: DatePipe)
  {
 
@@ -30,6 +36,10 @@ checkInTimeFormControl = new FormControl('', [
 ]);
 
 checkOutTimeFormControl = new FormControl('', [
+  Validators.required,
+]);
+
+paymentStatusFormControl = new FormControl('', [
   Validators.required,
 ]);
 
@@ -63,7 +73,7 @@ locationFormControl = new FormControl('', [
       checkOutDate.setMinutes(+checkOutTime[1]);
       this.timeClockingDetails.checkIn = this.datePipe.transform(checkInDate, 'HH:mm:ss');
       this.timeClockingDetails.checkOut=this.datePipe.transform(checkOutDate, 'HH:mm:ss');
-
+      console.log(this.timeClockingDetails.paymentStatus);
       this.addEntryService.addEntry(this.timeClockingDetails).subscribe(
         (data:any) =>
         {
@@ -89,7 +99,7 @@ locationFormControl = new FormControl('', [
 
   isFormValid() {
     return this.timeClockingDetails.dateWorked && 
-    this.timeClockingDetails.checkIn && this.timeClockingDetails.checkOut && this.timeClockingDetails.location;
+    this.timeClockingDetails.checkIn && this.timeClockingDetails.checkOut && this.timeClockingDetails.paymentStatus&&this.timeClockingDetails.location;
   }
 
  

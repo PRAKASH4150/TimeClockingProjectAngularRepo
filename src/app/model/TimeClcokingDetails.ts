@@ -12,4 +12,5 @@ export class TimeClockingDetails
     endDate:any;
     wagePerHour:any;
     totalWageAmount:any;
+    paymentStatus:any;
 }

@@ -45,6 +45,7 @@
               <th>CHECK OUT</th>
               <th>LOCATION</th>
               <th>HOURS WORKED</th>
+              <th>PAYMENT STATUS</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-tcd>
@@ -56,6 +57,7 @@
               <td>{{tcd.checkOut}}</td>
               <td>{{tcd.location}}</td>
               <td>{{tcd.totalHoursWorked}}</td>
+              <td>{{tcd.paymentStatus}}</td>
             </tr>
           </ng-template>
         </p-table>

@@ -20,6 +20,12 @@ export class ViewAllEntriesComponent implements OnInit{
   rows:any=3;
   first=0;
 
+  options: { label: string, value: any }[] = [
+    { label: 'Paid', value: 'Paid' },
+    { label: 'Unpaid', value: 'Unpaid' },
+  ];
+
+
   dateRequiredFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -29,6 +35,10 @@ export class ViewAllEntriesComponent implements OnInit{
   ]);
   
   checkOutTimeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  paymentStatusFormControl = new FormControl('', [
     Validators.required,
   ]);
   

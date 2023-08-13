@@ -13,6 +13,7 @@
             <th>CHECK OUT</th>
             <th>LOCATION</th>
             <th>HOURS WORKED</th>
+            <th>PAYMENT STATUS</th>
             <th>UPDATE RECORD</th>
             <th>Delete Record</th>
           </tr>
@@ -27,6 +28,7 @@
               <td>{{tcd.checkOut}}</td>
               <td>{{tcd.location}}</td>
               <td>{{tcd.totalHoursWorked}}</td>
+              <td>{{tcd.paymentStatus}}</td>
                <td>
                 <button type="button" class="btn btn-info" (click)="updateEntry(tcd)">Update</button>
                </td>
@@ -79,6 +81,18 @@
                     <div class="field-error" *ngIf="checkOutTimeFormControl.hasError('required')">Check Out is required.</div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="paymentstatus">Payment Status<span class="required-field">*</span></label>
+                  <select class="form-control"  id="paymentstatus" name="paymentstatus"
+                  [formControl]="paymentStatusFormControl" [(ngModel)]="timeClockingDetails.paymentStatus" required>
+                    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+                  </select>
+                  <div *ngIf="paymentStatusFormControl.invalid && (paymentStatusFormControl.dirty || paymentStatusFormControl.touched)">
+                    <div class="field-error" *ngIf="paymentStatusFormControl.hasError('required')">Payment Status is required.</div>
+                    </div>  
+                </div>
+                
                 <div class="form-group">
                   <label for="location">Location <span class="required-field">*</span></label>
                   <input type="text" class="form-control" id="location" name="location" 
